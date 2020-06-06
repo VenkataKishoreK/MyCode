@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "propety-maps-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/propetyMaps/PropetyMapsWebPart.js",
+          "manifest": "./src/webparts/propetyMaps/PropetyMapsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "PropetyMapsWebPartStrings": "lib/webparts/propetyMaps/loc/{locale}.js"
+  }
+}

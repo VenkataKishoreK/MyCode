@@ -10,10 +10,13 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'PropetyMapsWebPartStrings';
 import PropetyMaps from './components/PropetyMaps';
 import { IPropetyMapsProps } from './components/IPropetyMapsProps';
+import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';
 
 export interface IPropetyMapsWebPartProps {
-  description: string;
+ description: string;
+ lists: string|string[];
 }
+
 
 export default class PropetyMapsWebPart extends BaseClientSideWebPart <IPropetyMapsWebPartProps> {
 
@@ -21,7 +24,8 @@ export default class PropetyMapsWebPart extends BaseClientSideWebPart <IPropetyM
     const element: React.ReactElement<IPropetyMapsProps> = React.createElement(
       PropetyMaps,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        lists: this.properties.lists
       }
     );
 
@@ -49,6 +53,19 @@ export default class PropetyMapsWebPart extends BaseClientSideWebPart <IPropetyM
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyFieldListPicker('lists', {
+                  label: 'Select a list',
+                  selectedList: this.properties.lists,
+                  includeHidden: false,
+                  orderBy: PropertyFieldListPickerOrderBy.Title,
+                  disabled: false,
+                  onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                  properties: this.properties,
+                  context: this.context,
+                  onGetErrorMessage: null,
+                  deferredValidationTime: 0,
+                  key: 'listPickerFieldId'
                 })
               ]
             }

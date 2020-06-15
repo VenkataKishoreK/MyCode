@@ -13,6 +13,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "PropetyMapsWebPartStrings": "lib/webparts/propetyMaps/loc/{locale}.js"
+    "PropetyMapsWebPartStrings": "lib/webparts/propetyMaps/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
   }
 }

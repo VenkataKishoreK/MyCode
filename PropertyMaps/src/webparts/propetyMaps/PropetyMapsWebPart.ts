@@ -10,11 +10,13 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'PropetyMapsWebPartStrings';
 import PropetyMaps from './components/PropetyMaps';
 import { IPropetyMapsProps } from './components/IPropetyMapsProps';
+import { PropertyFieldMultiSelect } from '@pnp/spfx-property-controls/lib/PropertyFieldMultiSelect';
 import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';
 
 export interface IPropetyMapsWebPartProps {
  description: string;
  lists: string|string[];
+ multiSelect: string[];
 }
 
 
@@ -25,7 +27,8 @@ export default class PropetyMapsWebPart extends BaseClientSideWebPart <IPropetyM
       PropetyMaps,
       {
         description: this.properties.description,
-        lists: this.properties.lists
+        lists: this.properties.lists,
+        multiSelect: this.properties.multiSelect        
       }
     );
 
@@ -66,6 +69,25 @@ export default class PropetyMapsWebPart extends BaseClientSideWebPart <IPropetyM
                   onGetErrorMessage: null,
                   deferredValidationTime: 0,
                   key: 'listPickerFieldId'
+                }),
+                PropertyFieldMultiSelect('multiSelect', {
+                  key: 'multiSelect',
+                  label: "Multi select field",
+                  options: [
+                    {
+                      key: "EN",
+                      text: "EN"
+                    },
+                    {
+                      key: "FR",
+                      text: "FR"
+                    },
+                    {
+                      key: "NL",
+                      text: "NL"
+                    }
+                  ],
+                  selectedKeys: this.properties.multiSelect
                 })
               ]
             }
